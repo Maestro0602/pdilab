@@ -22,7 +22,7 @@ class car extends vehicle{
     }
 }
 
-public class Main {
+public class ex1 {
     public static void main(String[] args) {
         vehicle v = new vehicle("GTR Skyline R35", 2007);
         v.start();
