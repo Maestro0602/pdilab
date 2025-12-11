@@ -1,73 +1,66 @@
-abstract class Transport {
-    protected double distance;
-
-    public Transport(double distance) {
-        this.distance = distance;
-    }
-
-    public abstract double calculateFare();
-
-    public String displayFare() {
-        return String.format("%s: Distance %.1fkm → Fare: $%.2f",
-                this.getClass().getSimpleName(), distance, calculateFare());
-    }
-}
-
-class BusTransport extends Transport {
-    public BusTransport(double distance) {
-        super(distance);
-    }
-
-    @Override
-    public double calculateFare() {
-        return distance * 1.5;
-    }
-}
-
-class MetroTransport extends Transport {
-    public MetroTransport(double distance) {
-        super(distance);
-    }
-
-    @Override
-    public double calculateFare() {
-        return 10 + (distance * 2);
-    }
-}
-
-class TaxiTransport extends Transport {
-    public TaxiTransport(double distance) {
-        super(distance);
-    }
-
-    @Override
-    public double calculateFare() {
-        return 20 + (distance * 5);
-    }
-}
+import java.util.ArrayList;
+import java.util.List;
 
 public class ex09 {
+
+    static abstract class Transport {
+        protected double distance;
+
+        public Transport(double distance) {
+            this.distance = distance;
+        }
+
+        public abstract double calculateFare();
+
+        public void displayFare() {
+            System.out.printf("%s Fare for %.1f km: $%.2f%n", 
+                              this.getClass().getSimpleName(), distance, calculateFare());
+        }
+    }
+
+    static class BusTransport extends Transport {
+        public BusTransport(double distance) {
+            super(distance);
+        }
+
+        @Override
+        public double calculateFare() {
+            return distance * 1.5;
+        }
+    }
+
+    static class MetroTransport extends Transport {
+        public MetroTransport(double distance) {
+            super(distance);
+        }
+
+        @Override
+        public double calculateFare() {
+            return 10.0 + (distance * 2.0);
+        }
+    }
+
+    static class TaxiTransport extends Transport {
+        public TaxiTransport(double distance) {
+            super(distance);
+        }
+
+        @Override
+        public double calculateFare() {
+            return 20.0 + (distance * 5.0);
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println("\n=== Exercise 9: Transportation System ===");
+        System.out.println("--- Exercise 9: Advanced Real-World Project (Transportation System) ---");
 
-        Transport[] transports = {
-                new BusTransport(5),
-                new MetroTransport(10),
-                new TaxiTransport(3),
-                new BusTransport(15),
-                new MetroTransport(8)
-        };
+        List<Transport> journeys = new ArrayList<>();
+        journeys.add(new BusTransport(5.0));
+        journeys.add(new MetroTransport(12.0));
+        journeys.add(new TaxiTransport(3.5));
 
-        System.out.println("Transport Fares:");
-        for (Transport transport : transports) {
-            System.out.println(transport.displayFare());
+        for (Transport journey : journeys) {
+            journey.displayFare();
         }
-
-        double totalFare = 0;
-        for (Transport transport : transports) {
-            totalFare += transport.calculateFare();
-        }
-
-        System.out.printf("%nTotal fare for all transports: $%.2f%n", totalFare);
     }
 }

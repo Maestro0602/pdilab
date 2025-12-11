@@ -1,68 +1,43 @@
-abstract class Payment {
-    public abstract String processPayment(double amount);
-
-    public String getPaymentInfo() {
-        return "Payment processed with " + this.getClass().getSimpleName();
-    }
-}
-
-class CreditCardPayment extends Payment {
-    private String cardHolder;
-
-    public CreditCardPayment(String cardNumber, String cardHolder) {
-        this.cardHolder = cardHolder;
-    }
-
-    @Override
-    public String processPayment(double amount) {
-        return String.format("Processing credit card payment of $%.2f for %s",
-                amount, cardHolder);
-    }
-}
-
-class PayPalPayment extends Payment {
-    private String email;
-
-    public PayPalPayment(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String processPayment(double amount) {
-        return String.format("Processing PayPal payment of $%.2f from %s",
-                amount, email);
-    }
-}
-
-class BankTransferPayment extends Payment {
-    private String bankName;
-
-    public BankTransferPayment(String accountNumber, String bankName) {
-        this.bankName = bankName;
-    }
-
-    @Override
-    public String processPayment(double amount) {
-        return String.format("Processing bank transfer of $%.2f from %s account",
-                amount, bankName);
-    }
-}
+import java.util.ArrayList;
+import java.util.List;
 
 public class ex07 {
-    public static void main(String[] args) {
-        System.out.println("\n=== Exercise 7: Abstract Classes ===");
 
-        Payment[] payments = {
-                new CreditCardPayment("1234-5678-9012-3456", "Alice Johnson"),
-                new PayPalPayment("alice@example.com"),
-                new BankTransferPayment("ACC123456", "Big Bank")
-        };
+    static abstract class Payment {
+        public abstract void processPayment(double amount);
+    }
 
-        double amount = 100.50;
-        for (Payment payment : payments) {
-            System.out.println(payment.processPayment(amount));
-            System.out.println(payment.getPaymentInfo());
-            System.out.println();
+    static class CreditCardPayment extends Payment {
+        @Override
+        public void processPayment(double amount) {
+            System.out.println("Credit Card: Processing $" + amount + " (Applying 2.5% fee).");
         }
+    }
+
+    static class PayPalPayment extends Payment {
+        @Override
+        public void processPayment(double amount) {
+            System.out.println("PayPal: Processing $" + amount + " (Instant transfer).");
+        }
+    }
+
+    static class BankTransferPayment extends Payment {
+        @Override
+        public void processPayment(double amount) {
+            System.out.println("Bank Transfer: Processing $" + amount + " (Requires 2-day clearance).");
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("--- Exercise 7: Abstract Classes (Payment Methods) ---");
+        
+        List<Payment> payments = new ArrayList<>();
+        payments.add(new CreditCardPayment());
+        payments.add(new PayPalPayment());
+        payments.add(new BankTransferPayment());
+
+        payments.get(0).processPayment(100.00);
+        payments.get(1).processPayment(45.99);
+        payments.get(2).processPayment(500.00);
     }
 }

@@ -1,54 +1,34 @@
-class LibraryItem {
-    protected String title;
-    protected String id;
-
-    public LibraryItem(String title, String id) {
-        this.title = title;
-        this.id = id;
-    }
-
-    public String displayInfo() {
-        return "ID: " + id + ", Title: " + title;
-    }
-}
-
-class Book extends LibraryItem {
-    private String author;
-
-    public Book(String title, String id, String author) {
-        super(title, id);
-        this.author = author;
-    }
-
-    @Override
-    public String displayInfo() {
-        return "Book - " + title + " by " + author + " (ID: " + id + ")";
-    }
-}
-
-class Magazine extends LibraryItem {
-    private int issueNumber;
-
-    public Magazine(String title, String id, int issueNumber) {
-        super(title, id);
-        this.issueNumber = issueNumber;
-    }
-
-    @Override
-    public String displayInfo() {
-        return "Magazine - " + title + ", Issue #" + issueNumber;
-    }
-}
-
 public class ex05 {
+
+    static class LibraryItem {
+        protected String _title;
+        protected String _id;
+
+        public LibraryItem(String title, String id) {
+            this._title = title;
+            this._id = id;
+        }
+
+        public void displayInfo() {
+            System.out.println("Library Item: Title: " + _title + ", ID: " + _id);
+        }
+    }
+
+    static class Book extends LibraryItem {
+        public Book(String title, String id) {
+            super(title, id);
+        }
+
+        @Override
+        public void displayInfo() {
+            System.out.println("BOOK: Title: " + _title + " (ID: " + _id + ")"); 
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println("\n=== Exercise 5: Protected Members ===");
+        System.out.println("--- Exercise 5: Using Protected Members (Library Resources) ---");
 
-        Book book = new Book("Java Programming", "B001", "James Gosling");
-        Magazine magazine = new Magazine("Tech Today", "M001", 42);
-
-        System.out.println(book.displayInfo());
-        System.out.println(magazine.displayInfo());
-        System.out.println("\nAccessing protected attribute: " + book.title);
+        Book myBook = new Book("The Java Programming Guide", "B-001");
+        myBook.displayInfo(); 
     }
 }
