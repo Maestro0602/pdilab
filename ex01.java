@@ -1,52 +1,41 @@
 class Vehicle {
-    private String brand;
-    private int year;
+
+    String brand;
+    int year;
+
 
     public Vehicle(String brand, int year) {
         this.brand = brand;
         this.year = year;
     }
 
-    public String start() {
-        return brand + " vehicle starting...";
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public int getYear() {
-        return year;
+    public void start() {
+        System.out.println(brand + " from " + year + " is starting its engine.");
     }
 }
 
 class Car extends Vehicle {
-    private int numDoors;
+    int numDoors;
 
     public Car(String brand, int year, int numDoors) {
         super(brand, year);
         this.numDoors = numDoors;
     }
 
-    public String honk() {
-        return "Beep beep!";
+    public void honk() {
+        System.out.println("The " + brand + " with " + numDoors + " doors is honking.");
     }
 
-    public String getCarInfo() {
-        return getBrand() + " (" + getYear() + "), " + numDoors + " doors";
-    }
-}
-
-public class ex01 {
     public static void main(String[] args) {
-        System.out.println("=== Exercise 1: Vehicle & Car ===");
 
-        Vehicle vehicle = new Vehicle("Generic", 2020);
-        Car car = new Car("Toyota", 2022, 4);
+        Vehicle myVehicle = new Vehicle("TruckMaster", 2020);
+        Car myCar = new Car("Honda Civic", 2024, 4);
 
-        System.out.println(vehicle.start());
-        System.out.println(car.start());
-        System.out.println(car.honk());
-        System.out.println(car.getCarInfo());
+        System.out.println("--- Vehicle Object ---");
+        myVehicle.start();
+
+        System.out.println("\n--- Car Object (Accessing inherited and specific methods) ---");
+        myCar.start();
+        myCar.honk(); 
     }
 }
