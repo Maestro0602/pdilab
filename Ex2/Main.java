@@ -4,9 +4,9 @@ public class Main {
     public static void main(String[] args){
         //Polymorphism method
         //Java still calls the correct overriden class, based on the actual object type at runtime;
-        Employee E = new Employee("Horng",20);
-        Employee M = new Manager("Naco", 30);
-        Employee I = new Intern("Bot", 40);
+        Employee E = new Employee("Heang",20);
+        Employee M = new Manager("Heng", 30);
+        Employee I = new Intern("Lyda", 40);
 
         
         E.calculate_bonus();
