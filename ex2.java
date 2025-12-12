@@ -34,9 +34,9 @@ public class ex2 {
      public static void main(String[] args) {
 
         // Polymorphism: all references are Employee
-        employee e1 = new employee("Alice", 3000);
-        employee e2 = new manager("Bob", 6000);
-        employee e3 = new intern("Charlie", 1500);
+        employee e1 = new employee("Puthirith", 3000);
+        employee e2 = new manager("Lyda", 6000);
+        employee e3 = new intern("Heang", 1500);
 
         System.out.println(e1.name + " bonus: " + e1.calculate_bonus());
         System.out.println(e2.name + " bonus: " + e2.calculate_bonus());

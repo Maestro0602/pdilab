@@ -3,20 +3,23 @@ abstract class Payment {
 }
 
 class CreditCardPayment extends Payment {
+    @Override
     void process_payment(double amount) {
-        System.out.println("Credit card paid " + amount);
+        System.out.println("Credit Card processed payment of $" + amount);
     }
 }
 
 class PayPalPayment extends Payment {
+    @Override
     void process_payment(double amount) {
-        System.out.println("PayPal paid " + amount);
+        System.out.println("PayPal processed payment of $" + amount);
     }
 }
 
 class BankTransferPayment extends Payment {
+    @Override
     void process_payment(double amount) {
-        System.out.println("Bank transfer paid " + amount);
+        System.out.println("Bank Transfer processed payment of $" + amount);
     }
 }
 

@@ -1,28 +1,54 @@
 class LibraryItem {
-    protected String _title;
-    protected int _id;
-    LibraryItem(String t, int i) {
-        _title = t;
-        _id = i;
+    protected String title;
+    protected String id;
+
+    public LibraryItem(String title, String id) {
+        this.title = title;
+        this.id = id;
     }
-    void display_info() {
-        System.out.println(_title + " (" + _id + ")");
+
+    public String displayInfo() {
+        return "ID: " + id + ", Title: " + title;
     }
 }
 
 class Book extends LibraryItem {
-    Book(String t, int i) {
-        super(t, i);
+    private String author;
+
+    public Book(String title, String id, String author) {
+        super(title, id);
+        this.author = author;
     }
-    void display_info() {
-        System.out.println("Book: " + _title + " [" + _id + "]");
+
+    @Override
+    public String displayInfo() {
+        return "Book - " + title + " by " + author + " (ID: " + id + ")";
+    }
+}
+
+class Magazine extends LibraryItem {
+    private int issueNumber;
+
+    public Magazine(String title, String id, int issueNumber) {
+        super(title, id);
+        this.issueNumber = issueNumber;
+    }
+
+    @Override
+    public String displayInfo() {
+        return "Magazine - " + title + ", Issue #" + issueNumber;
     }
 }
 
 public class ex5 {
     public static void main(String[] args) {
-        Book b = new Book("Java Basics", 101);
-        b.display_info();
+        System.out.println("\n=== Exercise 5: Protected Members ===");
+
+        Book book = new Book("Java Programming", "B001", "James Gosling");
+        Magazine magazine = new Magazine("Tech Today", "M001", 42);
+
+        System.out.println(book.displayInfo());
+        System.out.println(magazine.displayInfo());
+        System.out.println("\nAccessing protected attribute: " + book.title);
     }
 }
-

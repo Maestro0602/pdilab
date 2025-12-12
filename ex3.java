@@ -23,7 +23,7 @@ class OnlineStudent extends Student {
 
 public class ex3 {
     public static void main(String[] args) {
-        OnlineStudent os = new OnlineStudent("Alice", "S123", "ZOOM777");
+        OnlineStudent os = new OnlineStudent("Thengvaheng", "p20240035", "ZOOM777");
         System.out.println(os.name);
         System.out.println(os.student_id);
         System.out.println(os.zoom_id);
